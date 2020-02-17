@@ -2,9 +2,9 @@
 # which hooks are provided by this repo
 # for use by other git repos.
 
-- id: clang-format
-  name: clang-format
+- id: check-clang-format
+  name: Validate C/C++ source format with clang-format
   entry: clang-format-hooks
   description: Formats C/CPP code
-  files: \.(c|cc|cxx|cpp|h|hpp|hxx|m)$
   language: python
+  files: \.(c|cc|cxx|cpp|h|hpp|hxx|m)$
