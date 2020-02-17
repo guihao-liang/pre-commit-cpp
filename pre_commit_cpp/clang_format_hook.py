@@ -176,11 +176,8 @@ def _assert_version(system_version, op_and_ver):
 
 
 def _prompt_before_return(retval, cmd, file_names):
-    print()
     if retval == CMD_FAILED:
         sys.stdout.write("Error with command: %s" % " ".join(cmd + file_names))
-    elif retval == CMT_FAILED:
-        sys.stdout.write("Please check and then stage modified files.\n")
 
 
 def main(argv=None):
