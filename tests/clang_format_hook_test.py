@@ -2,10 +2,10 @@ import os
 
 import pytest
 
-import hooks.clang_format_hook as clang_format_hook
-from hooks.clang_format_hook import CMD_FAILED
-from hooks.clang_format_hook import CMT_FAILED
-from hooks.clang_format_hook import main
+import pre_commit_cpp.clang_format_hook as clang_format_hook
+from pre_commit_cpp.clang_format_hook import CMD_FAILED
+from pre_commit_cpp.clang_format_hook import CMT_FAILED
+from pre_commit_cpp.clang_format_hook import main
 from testing.utils import get_resource_path
 
 
