@@ -22,7 +22,9 @@ addons:
 script:
   - pip install --upgrade pip
   - pip install tox
+  - tox -e lint
   - tox -e ${TOXENV}
+  - tox -e pre-commit-cpp
 
 notifications:
   email: false

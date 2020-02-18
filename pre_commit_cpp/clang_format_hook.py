@@ -3,8 +3,6 @@ import os
 import subprocess as sp
 import sys
 
-import packaging.version as version
-
 # import typing
 
 CMT_FAILED = 1  # commit doesn't comply with clang-format, should not pass
@@ -144,8 +142,12 @@ def _get_system_version():
 def _assert_version(system_version, op_and_ver):
     retval = 0
     op, expected_version = _parse_version_operator_and_operand(op_and_ver)
-    system_version = version.parse(system_version)
-    expected_version = version.parse(expected_version)
+
+    import pkg_resources
+
+    system_version = pkg_resources.parse_version(system_version)
+    expected_version = pkg_resources.parse_version(expected_version)
+
     if op == "=":
         if system_version != expected_version:
             retval = CMD_FAILED
