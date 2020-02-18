@@ -21,10 +21,9 @@ addons:
     packages:
       - clang-format
 
-install: pip install tox
-
 script:
   - pip install --upgrade pip
+  - pip install tox
   - tox -e ${TOXENV}
 
 notifications:
