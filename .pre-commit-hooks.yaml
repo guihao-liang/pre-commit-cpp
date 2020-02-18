@@ -4,7 +4,7 @@
 
 - id: check-clang-format
   name: Validate C/C++ source format with clang-format
-  entry: clang-format-hooks
+  entry: clang-format-hook
   description: Formats C/CPP code
   language: python
   files: \.(c|cc|cxx|cpp|h|hpp|hxx|m)$

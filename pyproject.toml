@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=40.8.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# other tools settings
+[tool.black]
+line-length = 88
+target_version = ['py36']
+include = '\.pyi?$'
+exclude = '''
+
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+  | foo.py           # also separately exclude a file named foo.py in
+                     # the root of the project
+)
+'''
+
+[tool.coverage.run]
+branch = true
+source = ["."]
+omit = [
+  ".tox/*",
+  "tests/*",
+  "*__init__.py",
+  "testing/utils.py"
+  ]
+
+[tool.converage.report]
+show_missing = true
+skip_covered = true
+# exclude_lines =
+#     # Have to re-enable the standard pragma
+#     \#\s*pragma: no cover
+
+#     # Don't complain if tests don't hit defensive assertion code:
+#     ^\s*raise AssertionError\b
+#     ^\s*raise NotImplementedError\b
+#     ^\s*return NotImplemented\b
+#     ^\s*raise$
+
+#     # Don't complain if non-runnable code isn't run:
+#     ^if __name__ == ['"]__main__['"]:$
+
+[tool.coverage.html]
+directory = "coverage-html"

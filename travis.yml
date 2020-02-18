@@ -1,0 +1,25 @@
+
+# this file is *not* meant to cover or endorse the use of travis, but rather to
+# help confirm pull requests to this project.
+
+language: python
+
+matrix:
+  include:
+    - python: 3.5
+      env: TOXENV=py35
+    - python: 3.6
+      env: TOXENV=py36
+    - python: 3.7
+      env: TOXENV=py37
+    - python: 3.8
+      env: TOXENV=py38
+
+install: pip install tox
+
+script:
+  - apt install clang-format
+  - tox
+
+notifications:
+  email: false

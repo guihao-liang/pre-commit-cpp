@@ -1,3 +1,4 @@
-black
+coverage[toml]
+flake8
+packaging
 pytest
-pytest-cov

@@ -1,0 +1,5 @@
+repos:
+  - repo: https://github.com/guihao-liang/pre-commit-cpp
+    rev: master
+    hooks:
+      - id: check-clang-format
