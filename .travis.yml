@@ -6,8 +6,6 @@ language: python
 
 matrix:
   include:
-    - python: 3.5
-      env: TOXENV=py35
     - python: 3.6
       env: TOXENV=py36
     - python: 3.7
@@ -26,7 +24,8 @@ addons:
 install: pip install tox
 
 script:
-  - tox
+  - pip install --upgrade pip
+  - tox -e ${TOXENV}
 
 notifications:
   email: false
