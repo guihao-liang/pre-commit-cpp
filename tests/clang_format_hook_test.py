@@ -78,9 +78,15 @@ def test_main_verbose(filename, expected_retval):
 )
 def test_main_inline(tmpdir, filename, expected_retval):
     src = get_resource_path(filename)
-    dst = tmpdir.join(filename)
+    # resolve the issue that multiple pytest session shares same folder
+    dst = tmpdir.join("".join("%02x" % x for x in os.urandom(16)) + filename)
     copyfile(src, dst)
-    assert main(["-i", "--style=google", dst.strpath]) == expected_retval
+    retval = main(["-i", dst.strpath])
+
+    if retval != expected_retval:
+        print("may caused by sharing same path by other pytest session:", dst.strpath)
+
+    assert retval == expected_retval
 
 
 @pytest.mark.parametrize(
@@ -89,7 +95,7 @@ def test_main_inline(tmpdir, filename, expected_retval):
 )
 def test_main_inline_verbose(tmpdir, filename, expected_retval):
     src = get_resource_path(filename)
-    dst = tmpdir.join(filename)
+    dst = tmpdir.join("".join("%02x" % x for x in os.urandom(16)) + filename)
     copyfile(src, dst)
     assert main(["-i", "--verbose", dst.strpath]) == expected_retval
     assert main(["-i", "--verbose", "--style=google", dst.strpath]) == 0
