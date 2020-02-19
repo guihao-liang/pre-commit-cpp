@@ -80,7 +80,7 @@ def test_main_inline(tmpdir, filename, expected_retval):
     with open(f.strpath, "w") as test_file:
         with open(get_resource_path(filename), "r") as origin:
             test_file.write(origin.read())
-    assert main(["-i", f.strpath]) == expected_retval
+    assert main(["-i", "--style=google", f.strpath]) == expected_retval
 
 
 @pytest.mark.parametrize(
