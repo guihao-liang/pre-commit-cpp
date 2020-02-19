@@ -1,4 +1,2 @@
 coverage[toml]
-flake8
-packaging
-pytest
+pytest >= 4

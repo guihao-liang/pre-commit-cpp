@@ -3,6 +3,7 @@
 git pre-commit hooks for C/C++
 
 [![Build Status](https://travis-ci.com/guihao-liang/pre-commit-cpp.svg?branch=master)](https://travis-ci.com/guihao-liang/pre-commit-cpp)
+[![codecov](https://codecov.io/gh/guihao-liang/pre-commit-cpp/branch/master/graph/badge.svg)](https://codecov.io/gh/guihao-liang/pre-commit-cpp)
 
 ## Hooks available
 
