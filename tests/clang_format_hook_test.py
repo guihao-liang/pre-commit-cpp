@@ -77,8 +77,9 @@ def test_main_verbose(filename, expected_retval):
 )
 def test_main_inline(tmpdir, filename, expected_retval):
     f = tmpdir.join(filename)
-    with open(get_resource_path(filename), "r") as origin:
-        f.write(origin.read())
+    with open(f.strpath, "w") as test_file:
+        with open(get_resource_path(filename), "r") as origin:
+            test_file.write(origin.read())
     assert main(["-i", f.strpath]) == expected_retval
 
 
@@ -88,8 +89,9 @@ def test_main_inline(tmpdir, filename, expected_retval):
 )
 def test_main_inline_verbose(tmpdir, filename, expected_retval):
     f = tmpdir.join(filename)
-    with open(get_resource_path(filename), "r") as origin:
-        f.write(origin.read())
+    with open(f.strpath, "w") as test_file:
+        with open(get_resource_path(filename), "r") as origin:
+            test_file.write(origin.read())
     assert main(["-i", "--verbose", f.strpath]) == expected_retval
     assert main(["-i", "--verbose", "--style=google", f.strpath]) == 0
 
