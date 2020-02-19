@@ -1,4 +1,5 @@
 import os
+from shutil import copyfile
 
 import pytest
 
@@ -76,11 +77,10 @@ def test_main_verbose(filename, expected_retval):
     [("test_free_style.cpp", CMT_FAILED), ("test_google_style.cpp", 0)],
 )
 def test_main_inline(tmpdir, filename, expected_retval):
-    f = tmpdir.join(filename)
-    with open(f.strpath, "w") as test_file:
-        with open(get_resource_path(filename), "r") as origin:
-            test_file.write(origin.read())
-    assert main(["-i", "--style=google", f.strpath]) == expected_retval
+    src = get_resource_path(filename)
+    dst = tmpdir.join(filename)
+    copyfile(src, dst)
+    assert main(["-i", "--style=google", dst.strpath]) == expected_retval
 
 
 @pytest.mark.parametrize(
@@ -88,12 +88,11 @@ def test_main_inline(tmpdir, filename, expected_retval):
     [("test_free_style.cpp", CMT_FAILED), ("test_google_style.cpp", 0)],
 )
 def test_main_inline_verbose(tmpdir, filename, expected_retval):
-    f = tmpdir.join(filename)
-    with open(f.strpath, "w") as test_file:
-        with open(get_resource_path(filename), "r") as origin:
-            test_file.write(origin.read())
-    assert main(["-i", "--verbose", f.strpath]) == expected_retval
-    assert main(["-i", "--verbose", "--style=google", f.strpath]) == 0
+    src = get_resource_path(filename)
+    dst = tmpdir.join(filename)
+    copyfile(src, dst)
+    assert main(["-i", "--verbose", dst.strpath]) == expected_retval
+    assert main(["-i", "--verbose", "--style=google", dst.strpath]) == 0
 
 
 @pytest.mark.parametrize(
