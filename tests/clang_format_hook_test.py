@@ -81,12 +81,9 @@ def test_main_inline(tmpdir, filename, expected_retval):
     # resolve the issue that multiple pytest session shares same folder
     dst = tmpdir.join("".join("%02x" % x for x in os.urandom(16)) + filename)
     copyfile(src, dst)
-    retval = main(["-i", dst.strpath])
-
-    if retval != expected_retval:
-        print("may caused by sharing same path by other pytest session:", dst.strpath)
-
-    assert retval == expected_retval
+    assert main(["-i", dst.strpath]) == expected_retval, (
+        "may caused by sharing same path by other pytest session: %s" % dst.strpath
+    )
 
 
 @pytest.mark.parametrize(
